@@ -5,4 +5,4 @@ const readline = require('readline').createInterface({
 readline.question("",name => {
     console.log(`W${"o".repeat(parseInt(name))}w!`);
     readline.close();
-});  
+});
