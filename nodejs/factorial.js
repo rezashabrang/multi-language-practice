@@ -3,11 +3,12 @@ const readline = require('readline').createInterface({
     output: process.stdout,
 });
 readline.question("",n => {
-    for (let i = 0; i < parseInt(n) ; i++)
-        print()
+    console.log(`${factorial(n)}`);
     readline.close();
 });
 
-function print() {
-    console.log("man khoshghlab hastam");
+function factorial(n) {
+    if (n == 1) return n
+
+    return n * factorial(n - 1);
 }
