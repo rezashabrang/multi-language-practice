@@ -6,9 +6,12 @@ import (
 	"strconv"
 )
 
+var PRIMES []int
+
 func main() {
 	var n int
 	fmt.Scan(&n)
+	PRIMES = append(PRIMES, 2)
 	startSequence := math.Pow10(n - 1)
 	endSequence := math.Pow10(n)
 	for i := startSequence; i < endSequence; i++ {
@@ -34,9 +37,20 @@ func checkDieHardness(number int, n int) bool {
 }
 
 func checkPrime(number int) bool {
-	for i := 2; i <= int(math.Ceil(float64(number)/2)); i++ {
+	if number < 2 {
+		return false
+	}
+	for _, prime := range PRIMES {
+		if number%prime == 0 {
+			return true
+		}
+	}
+	for i := PRIMES[len(PRIMES)-1]; i <= int(math.Sqrt(float64(number))); i++ {
 		if number%i == 0 {
 			return false
+		}
+		if checkPrime(i) {
+			PRIMES = append(PRIMES, i)
 		}
 	}
 	return true
